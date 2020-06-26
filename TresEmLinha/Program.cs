@@ -14,18 +14,17 @@ namespace TresEmLinha
             IGame game = new Game();
             game.Init();
             do
-            {
+            {   
 
                 Console.WriteLine(game.ToString());
                 Console.WriteLine();
-                Console.WriteLine($"Player{game.Player}: ");
+                Console.WriteLine($"Jogada {game.NumberOfMoves + 1} para jogador {game.Player}:");
                 var ch = Console.ReadLine();
                 int index;
                 if (int.TryParse(ch, out index) && index >= 1 && index <=9 )
                 {
                     game.Play(index);
                 }
-                Console.ReadLine();
             }
             while (game.CanPlay());
         }

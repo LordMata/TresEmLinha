@@ -1,4 +1,4 @@
-﻿using System;
+﻿   using System;
 using System.Collections.Generic;
 
 namespace TresEmLinhaTests
@@ -16,6 +16,7 @@ namespace TresEmLinhaTests
         bool IsEnded();
 
         void Play(int position);
+
         bool CanPlay();
     }
 }

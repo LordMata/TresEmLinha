@@ -11,6 +11,8 @@ namespace TresEmLinhaTests
 
         public int Player { get; private set; }
 
+        public int Position { get; set; }
+
         public bool CanPlay()
         {
             // TODO: to be implmented
@@ -32,6 +34,7 @@ namespace TresEmLinhaTests
 
             Player = 1;
             NumberOfMoves = 0;
+            Position = Position - 1;
         }
 
         public bool IsEnded()
@@ -39,9 +42,27 @@ namespace TresEmLinhaTests
             throw new NotImplementedException();
         }
 
-        public void Play(int position)
+        public void Play(this.Position)
         {
-            throw new NotImplementedException();
+            // TODO
+            if (Player == 1)
+            {
+                if (Board[Position] == ' ')
+                {
+                    this.Board[Position] = 'X';
+                    Player = 2;
+                    NumberOfMoves = NumberOfMoves + 1;
+                }
+            }
+            else
+            {
+                if (Board[Position] == ' ')
+                {
+                    this.Board[Position] = 'O';
+                    Player = 1;
+                    NumberOfMoves = NumberOfMoves + 1;
+                }
+            }
         }
 
         public override string ToString()
