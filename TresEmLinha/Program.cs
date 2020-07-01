@@ -21,7 +21,7 @@ namespace TresEmLinha
                 Console.WriteLine($"Jogada {game.NumberOfMoves + 1} para jogador {game.Player}:");
                 var ch = Console.ReadLine();
                 int index;
-                if (int.TryParse(ch, out index) && index >= 1 && index <=9 )
+                if (int.TryParse(ch, out index) && index >= 0 && index <=8 )
                 {
                     game.Play(index);
                 }

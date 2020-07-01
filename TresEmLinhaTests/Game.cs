@@ -5,6 +5,7 @@ namespace TresEmLinhaTests
 {
     public class Game : IGame
     {
+        char J;
         public char[] Board { get; set; }
 
         public int NumberOfMoves { get; private set; }
@@ -19,20 +20,59 @@ namespace TresEmLinhaTests
 
         public bool HasWon()
         {
-            if (Board[4] == 'X')
+            if (Board[0] == J && Board[1] == J && Board[2] == J)
             {
-                Console.WriteLine("player 1 won");
+                Jogada();
+                return true;
             }
-            //Board[0] + Board[1] + Board[2];
-            //Board[3] + Board[4] + Board[5];
-            //Board[6] + Board[7] + Board[8];
+            if (Board[0] == J && Board[3] == J && Board[6] == J)
+            {
+                Jogada();
+                return true;
+            }
+            if (Board[0] == J && Board[4] == J && Board[8] == J)
+            {
+                Jogada();
+                return true;
+            }
+            if (Board[1] == J && Board[4] == J && Board[7] == J)
+            {
+                Jogada();
+                return true;
+            }
+            if (Board[2] == J && Board[5] == J && Board[8] == J)
+            {
+                Jogada();
+                return true;
+            }
+            if (Board[2] == J && Board[4] == J && Board[6] == J)
+            {
+                Jogada();
+                return true;
+            }
+            if (Board[3] == J && Board[4] == J && Board[5] == J)
+            {
+                Jogada();
+                return true;
+            }
+            if (Board[6] == J && Board[7] == J && Board[8] == J)
+            {
+                Jogada();
+                return true;
+            }
+            return false;
+        }
 
-            //Board[0] + Board[3] + Board[6];
-            //Board[1] + Board[4] + Board[7];
-            //Board[2] + Board[5] + Board[8];
-
-            //Board[0] + Board[4] + Board[8];
-            //Board[2] + Board[4] + Board[6]; 
+        private void Jogada()
+        {
+            if (J == 'X')
+            {
+                Console.WriteLine("PLAYER 1 WON!");
+            }
+            else if (J == 'O')
+            {
+                Console.WriteLine("PLAYER 2 WON!");
+            }
         }
 
         public void Init()
@@ -45,11 +85,12 @@ namespace TresEmLinhaTests
 
             Player = 1;
             NumberOfMoves = 0;
+            
         }
 
         public bool IsEnded()
         {
-            throw new NotImplementedException();
+            return false;
         }
 
         public void Play(int position)
@@ -57,22 +98,23 @@ namespace TresEmLinhaTests
             // TODO
             if (Player == 1)
             {
+                this.J = 'X';
                 if (Board[position] == ' ')
                 {
-                    this.Board[position] = 'X';
+                    this.Board[position] = J;
                     Player = 2;
-                    NumberOfMoves = NumberOfMoves + 1;
                 }
             }
             else
             {
+                this.J = 'O';
                 if (Board[position] == ' ')
                 {
-                    this.Board[position] = 'O';
+                    this.Board[position] = J;
                     Player = 1;
-                    NumberOfMoves = NumberOfMoves + 1;
                 }
             }
+
             HasWon();
         }
 
