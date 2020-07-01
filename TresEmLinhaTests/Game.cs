@@ -5,7 +5,8 @@ namespace TresEmLinhaTests
 {
     public class Game : IGame
     {
-        char J;
+        public char J { get; set; }
+        const int MaxMoves = 9;
         public char[] Board { get; set; }
 
         public int NumberOfMoves { get; private set; }
@@ -15,55 +16,61 @@ namespace TresEmLinhaTests
         public bool CanPlay()
         {
             // TODO: to be implmented
-            return true;
+            //if (!IsEnded())
+            //{
+            //    return true;
+            //}
+            //return false;
+            return !IsEnded();
         }
 
         public bool HasWon()
         {
             if (Board[0] == J && Board[1] == J && Board[2] == J)
             {
-                Jogada();
+                //Jogada();
                 return true;
             }
             if (Board[0] == J && Board[3] == J && Board[6] == J)
             {
-                Jogada();
+                //Jogada();
                 return true;
             }
             if (Board[0] == J && Board[4] == J && Board[8] == J)
             {
-                Jogada();
+                //Jogada();
                 return true;
             }
             if (Board[1] == J && Board[4] == J && Board[7] == J)
             {
-                Jogada();
+                //Jogada();
                 return true;
             }
             if (Board[2] == J && Board[5] == J && Board[8] == J)
             {
-                Jogada();
+                //Jogada();
                 return true;
             }
             if (Board[2] == J && Board[4] == J && Board[6] == J)
             {
-                Jogada();
+                //Jogada();
                 return true;
             }
             if (Board[3] == J && Board[4] == J && Board[5] == J)
             {
-                Jogada();
+                //Jogada();
                 return true;
             }
             if (Board[6] == J && Board[7] == J && Board[8] == J)
             {
-                Jogada();
+                //Jogada();
                 return true;
             }
+
             return false;
         }
 
-        private void Jogada()
+        /*private void Jogada()
         {
             if (J == 'X')
             {
@@ -73,11 +80,12 @@ namespace TresEmLinhaTests
             {
                 Console.WriteLine("PLAYER 2 WON!");
             }
-        }
+
+        }*/
 
         public void Init()
         {
-            Board = new char[9];
+            Board = new char[MaxMoves];
             for (int i = 0; i < Board.Length; i++)
             {
                 Board[i] = ' ';
@@ -90,32 +98,39 @@ namespace TresEmLinhaTests
 
         public bool IsEnded()
         {
-            return false;
+            //return NumberOfMoves == 9 && HasWon() ? true : false;
+            return NumberOfMoves == MaxMoves || HasWon();
         }
 
         public void Play(int position)
         {
+            var index = position - 1;
             // TODO
             if (Player == 1)
             {
-                this.J = 'X';
-                if (Board[position] == ' ')
+                J = 'X';
+                if (Board[index] == ' ')
                 {
-                    this.Board[position] = J;
-                    Player = 2;
+                    Moves(index);
                 }
             }
             else
             {
-                this.J = 'O';
-                if (Board[position] == ' ')
+                J = 'O';
+                if (Board[index] == ' ')
                 {
-                    this.Board[position] = J;
-                    Player = 1;
+                    Moves(index);
                 }
             }
 
             HasWon();
+        }
+
+        private void Moves(int index)
+        {
+            this.Board[index] = J;
+            NumberOfMoves = NumberOfMoves + 1;
+            Player = Player == 1 ? 2 : 1;
         }
 
         public override string ToString()

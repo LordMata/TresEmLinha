@@ -6,6 +6,7 @@ namespace TresEmLinhaTests
     public interface IGame
     {
         char[] Board { get; }
+        char J { get; }
         int NumberOfMoves { get; }
         int Player { get; }
 
