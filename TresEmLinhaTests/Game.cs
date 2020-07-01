@@ -19,7 +19,20 @@ namespace TresEmLinhaTests
 
         public bool HasWon()
         {
-            throw new NotImplementedException();
+            if (Board[4] == 'X')
+            {
+                Console.WriteLine("player 1 won");
+            }
+            //Board[0] + Board[1] + Board[2];
+            //Board[3] + Board[4] + Board[5];
+            //Board[6] + Board[7] + Board[8];
+
+            //Board[0] + Board[3] + Board[6];
+            //Board[1] + Board[4] + Board[7];
+            //Board[2] + Board[5] + Board[8];
+
+            //Board[0] + Board[4] + Board[8];
+            //Board[2] + Board[4] + Board[6]; 
         }
 
         public void Init()
@@ -60,6 +73,7 @@ namespace TresEmLinhaTests
                     NumberOfMoves = NumberOfMoves + 1;
                 }
             }
+            HasWon();
         }
 
         public override string ToString()
